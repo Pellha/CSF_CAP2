@@ -1,3 +1,15 @@
+#####################################################################################################################################################
+#NAMGYEL PELLHA
+#02230267
+#MECHANICAL ENGINEERING
+######################################################################################################################################################
+#REFERNCE:
+#https://youtu.be/pTB0EiLXUC8?feature=shared
+#https://youtu.be/tJxcKyFMTGo?feature=shared
+#https://youtu.be/z1ul3mDHyO8?feature=shared
+#https://youtu.be/ZDa-Z5JzLYM?feature=shared
+#https://youtu.be/xTh-ln2XhgU?feature=shared
+#########################################################################################################################################################
 import os
 import string
 import random
@@ -8,11 +20,11 @@ class Account:
         self.bal = bal
         self.typ = typ
 
-    def deposit(self, amount):
+    def deposit(self, amount):#depositing system
         self.bal += amount
         return self.bal
 
-    def withdraw(self, amount):
+    def withdraw(self, amount):#withdraw system
         if self.bal >= amount:
             self.bal -= amount
             return self.bal
@@ -36,7 +48,7 @@ class Bank:
         self.load_accts()
 
     def load_accts(self):
-        if os.path.exists("accts.txt"):
+        if os.path.exists("accts.txt"):#txt file created
             with open("accts.txt", "r") as file:
                 for line in file:
                     acct_info = line.strip().split(',')
@@ -48,12 +60,12 @@ class Bank:
                     elif typ == "Business":
                         self.accts[acct_num] = BusinessAccount(acct_num, bal)
 
-    def save_accts(self):
+    def save_accts(self):#txt file will be saved
         with open("accts.txt", "w") as file:
             for acct_num, acct in self.accts.items():
                 file.write(f"{acct_num},{acct.bal},{acct.typ}\n")
 
-    def create_acct(self, typ):
+    def create_acct(self, typ):#generate account type
         acct_num = ''.join(random.choices(string.digits, k=8))
         if typ == "Personal":
             acct = PersonalAccount(acct_num, 0)
